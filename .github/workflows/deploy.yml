@@ -1,0 +1,33 @@
+name: exercise 1
+on: push
+jobs:
+  initialization:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting code
+        uses: actions/checkout@v4
+
+      - name: Installing dependencies
+        run: npm ci
+
+  linter:
+    needs: initialization
+    runs-on: ubuntu-latest
+    steps:
+      - name: Linter execution
+        run: npm run lint
+
+  test:
+    needs: linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: npm run test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Building...
+        run: npm run build

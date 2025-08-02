@@ -13,10 +13,13 @@ jobs:
   linter:
     needs: initialization
     runs-on: ubuntu-latest
+
     steps:
       - name: Linter execution
         run: npm run lint
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
   test:
     needs: linter
     runs-on: ubuntu-latest

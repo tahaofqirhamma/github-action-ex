@@ -1,8 +1,8 @@
 name: exercise 1
 on: push
+
 jobs:
   linter:
-    needs: initialization
     runs-on: ubuntu-latest
     steps:
       - name: Getting code
@@ -26,7 +26,6 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-
     steps:
       - name: Getting code
         uses: actions/checkout@v4
